@@ -1,8 +1,10 @@
+
 import { useState } from 'react';
 import { Configuration, OpenAIApi } from 'openai';
 import './App.css';
 
 function App() {  
+  const [prompts, setPrompts] = useState('');
   const configuration = new Configuration({
     apiKey: import.meta.env.VITE_Open_AI_Key,
   });
@@ -11,7 +13,7 @@ function App() {
 
   const generateImg = async () => {
     const res = await openai.createImage({
-      prompt: "a white siamese cat",
+      prompt: prompts,
       n:1,
       size: "1024x1024"
     });
@@ -20,8 +22,13 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Hello World!</h1>
+    <div className='app-main'>
+      <h2>Generate an Image using Open AI API</h2>
+      <input 
+        className='app-input' 
+        placeholder='Type something to generate an Image...'
+        onChange={(e) => setPrompts(e.target.value)}
+      />
       <button onClick={generateImg}>Generate an Image</button>
     </div>
   )
