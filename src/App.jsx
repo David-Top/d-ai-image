@@ -5,6 +5,7 @@ import './App.css';
 
 function App() {  
   const [prompts, setPrompts] = useState('');
+  const [result, setResult] = useState('');
   const configuration = new Configuration({
     apiKey: import.meta.env.VITE_Open_AI_Key,
   });
@@ -18,7 +19,7 @@ function App() {
       size: "1024x1024"
     });
 
-    console.log(res.data.data[0].url)
+    setResult(res.data.data[0].url);
   }
 
   return (
@@ -29,7 +30,8 @@ function App() {
         placeholder='Type something to generate an Image...'
         onChange={(e) => setPrompts(e.target.value)}
       />
-      <button onClick={generateImg}>Generate an Image</button>
+      <button onClick={generateImg}>Generate an Image</button>      
+      {result.length > 0 ? <img className='app-result' src={result} alt="result image" /> : <></>}
     </div>
   )
 }

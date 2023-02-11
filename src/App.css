@@ -2,7 +2,7 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  text-align: center;  
 }
 
 .app-main {
@@ -16,4 +16,9 @@
   height: 30px;
   margin: 20px;
   font-size: medium;
+}
+
+.app-result {
+  margin-top: 20px;
+  width: 400px;
 }
